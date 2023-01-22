@@ -19,7 +19,6 @@ const verifyToken = async (req, res, next) => {
     }
     try {
         const decoded = jwt.verify(token.split(" ")[1], process.env.TOKEN_KEY);
-        console.log(decoded);
         let  query  = [
             {
                 "$match" : {
@@ -76,7 +75,6 @@ const verifyToken = async (req, res, next) => {
           ]
         
         const user = await UserModel.aggregate(query)
-        console.log(user);
         req.user = user[0] || null;
     } catch (err) {
       console.log("================== Verify token error ====================");

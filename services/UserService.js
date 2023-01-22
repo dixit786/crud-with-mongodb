@@ -79,7 +79,6 @@ exports.updateAllUserWithDifferentData = async (dataArr) => {
   try {
     return await UserModel.bulkWrite(
       dataArr.map((data) => {
-        console.log(data);
         return ({
           updateOne: {
             filter: { _id: ObjectId(data._id) },
