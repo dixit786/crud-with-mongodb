@@ -10,9 +10,13 @@ const {
   updateAllWithDifferentData,
 
 } = require("../controllers/UserController");
+const {permission} = require("../middleware/permission");
 
 module.exports = app => {
   const router = express.Router();
+
+  //Check logged user has a permission of users module or not
+  app.use(permission("users"))
 
   //Api for get all users
   router.get("/", getAllUsers);
